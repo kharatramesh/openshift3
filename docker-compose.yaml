@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend.dockerfile
+    scale: 1
+    ports:
+    - "9091:80"
+    depends_on:
+      - database
+  database:
+    build:
+      context: .
+      dockerfile: ./database.dockerfile
+    environment:
+    - MYSQL_ROOT_PASSWORD=123
